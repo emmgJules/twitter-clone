@@ -3,10 +3,13 @@ import authRoutes from "./routes/auth.routes.js"
 import dotenv from "dotenv"
 import connectMongoDB from "./db/connectMongoDB.js"
 const app = express()
-const PORT=process.env.PORT  || '8000'
+
 
 dotenv.config()
+
+const PORT=process.env.PORT || '8000'
 app.use(express.json())
+app.use(express.urlencoded({extended:true})) // to parse form data
 app.use("/api/auth", authRoutes)
 
 app.listen(PORT, () => {
